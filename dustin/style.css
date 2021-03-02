@@ -1,185 +1,94 @@
-@import url(https://fonts.googleapis.com/css?family=Lato);
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300';
 
-$lato: "Lato";
-$black: #000;
-$white: #fff;
+$padding:30px;
 
-/* CENTERING */
+* { box-sizing: border-box; }
 
-.centered {
-  position: fixed;
+body { background: #757575; overflow-x: hidden; }
+.container {
+  perspective: 800px;
+  
+  /* Styling */  
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  
+  /* Center it */
+  position: absolute;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
-
-@mixin vertical-align($position: relative) {
-  position: $position;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+.card {
+  /* Styling */
+  width: 700px;
+  height: 400px;
+  background: rgb(20,20,20);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);  
+  
+  /* Card flipping effects */
+  transform-style: preserve-3d;
+  transition: 0.6s; 
+}
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* Fix Chrome rendering bug */
+  transform: rotate(0deg) translateZ(1px);
 }
 
-/* /end */
-
-body{
-   background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/326221/bg.jpg);
-   background-attachment: fixed;
-   background-size:cover;
-   background-repeat:no-repeat;
-}
-
-h3{
-   position: relative;
-   left: 45%;
-}
-
-/* THE FRONT */
-
-.front{
-    background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/326221/bc-front.jpg);
-   background-size:cover;
-}
-
-/* /end */
-
-/* THE BACK */
-
-.back{
-   background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/326221/bc-back.jpg);
-   background-size:cover;
-   
-   h1, p, .font-a-icons {
-      color: $black;
-      font-family: $lato;
-      margin-left: 30%;
-      line-height: 90%;
-   }   
-   
-   h1{
-      margin-top: 5%;    
-   }
-   
-   p{
-      font-size: 16px;
-      padding-bottom: 15px;
-      width: 35%;
-      border-bottom: 2px solid $black;
-   }
-   
-   .bold{
-      font-weight: bold;
-   }
-   
-   .font-a-icons{    
-      margin-top: 25px;
-      
-      .icon-group{
-         margin-top: 8px;
-      }
-      
-      span, .link, .fa, a{
-         color: $black;
-      }  
-      
-      .fa{
-         font-size: 18px;
-      }
-      
-      span, a{
-         font-size: 16px;
-      }
-      
-      a, .website{
-         text-decoration: none;
-      }
-      
-      a:hover, .website:hover{
-         color: #3f3f3f;
-      }     
-   }
-   .icon-box{
-      position: relative;
-      color: $black;
-      font-size: 24px;
-      height: 45px;
-      width: 45px;
-      padding: 5px;
-      top: 75px;
-      left: 30%;
-      display: inline-block;
-      border: 2px solid $black;
-      margin: 5px;
-      text-align: center;
-      cursor: pointer;
-      -webkit-transition: all ease 0.5s;
-	      -moz-transition: all ease 0.5s;
-	         transition: all ease 0.5s;
-   }
-   .icon-box:hover {
-    box-shadow: inset 0 50px 0 0 $black;
-    color: $white;
-   }
-}
-
-/* /end */
-
-/* THE FLIP EFFECT */
-
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000px;
-}
-	/* flip the pane when hovered */
-	.flip-container:hover .flipper, .flip-container.hover .flipper {
-		transform: rotateY(180deg);
-      cursor: pointer;
-	}
-
-.flip-container, .front, .back {
-   height: 350px;
-   width: 600px;
-}
-
-.flipper {
-	transition: 0.5s;
-	transform-style: preserve-3d;
-	position: relative;
-}
-
-.front, .back {
-	backface-visibility: hidden;
-	position: absolute;
-}
-
-.front {
-	z-index: 2;
-	/* firefox 31 */
-	transform: rotateY(0deg);
-}
-
-.back{
-   background-color: $black;
-}
-
+/* Flip the card on hover */
+.container:hover .card,
 .back {
-	transform: rotateY(180deg);
+  transform: rotateY(-180deg) translateZ(1px);
 }
 
-.vertical.flip-container {
-	position: relative;
+/* Front styling */
+.front {
+  /* Center the name + outline (almost) */
+  line-height: 390px; /* Height - some (because visual center is a little higher than actual center) */
+  text-align: center;
+}
+.logo {
+  outline: 1px solid #19F6E8;
+  display: inline-block;
+  padding: 15px 40px;
+  
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 32px;
+  letter-spacing: 8px;
 }
 
-	.vertical .back {
-		transform: rotateX(180deg);
-	}
+/* Back styling */
+.back {
+  background: #15CCC0;
+  padding: $padding;
+}
+.name {
+  color: #3B3B3B;
+  margin-bottom: 0;
+}
+p {
+  margin: 0.8em 0;
+}
+.info {
+  position: absolute;
+  bottom: $padding;
+  left: $padding;
+  color: #3b3b3b;
+}
+.property {
+  color: #fff;
+}
 
-	.vertical.flip-container .flipper {
-		transform-origin: 100% 400x; 
-	}
-
-	.vertical.flip-container:hover .flipper {
-		transform: rotateX(-180deg);
-	}
+/* Make semi-responsive */
+@media (max-width:700px) {
+  .card { transform: scale(.5); }
+  .container:hover .card { transform: scale(.5) rotateY(-180deg) translateZ(1px); }
+}
