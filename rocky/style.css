@@ -55,7 +55,7 @@ body { background: #757575; overflow-x: hidden; }
   text-align: center;
 }
 .logo {
-  outline: 1px solid #19F6E8;
+  outline: 1px solid #f6d519;
   display: inline-block;
   padding: 15px 40px;
   
@@ -69,7 +69,7 @@ body { background: #757575; overflow-x: hidden; }
 
 /* Back styling */
 .back {
-  background: #15CCC0;
+  background: #f6d519;
   padding: 30px;
 }
 .name {
