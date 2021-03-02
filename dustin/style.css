@@ -26,7 +26,7 @@ body { background: #757575; overflow-x: hidden; }
   /* Styling */
   width: 700px;
   height: 400px;
-  background: rgb(165,42,42);
+  background: rgb(59, 41, 0);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);  
   
   /* Card flipping effects */
